@@ -12,6 +12,7 @@ exports.notes = (req,res,next)=>{
     const search = req.query.search;
     const sort = req.query.sort;
     const pages = req.query.pages;
+    const limit = req.query.limit;
 
     var query = "SELECT desc_id, title,note,time,category_name FROM description INNER JOIN category ON description.category = category.category_id";
 
@@ -23,19 +24,21 @@ exports.notes = (req,res,next)=>{
     if(!isEmpty(search)){
         query += ` WHERE description.title LIKE '%${req.query.search}%'`;
     }
+
     if(!isEmpty(sort)){
         query += ` ORDER BY time ${sort}`;
     }
-    else{
-        query += ` ORDER BY desc_id ASC`;
-    }
+
     if(!isEmpty(pages)){
-        let limit = 2;
+        // let limit = 2;
         var offset = pages== 1 ? 0 : (pages-1)* limit;
 
         query += ` LIMIT ${limit} OFFSET ${offset}`;
     }
-
+    
+    if(req.url == "/notes"){
+        query += ` ORDER BY time ASC LIMIT 10`;
+    }
     connection.query(query,(err,rows,field)=>{
         if(err){
             return next(new Error(err));
