@@ -33,7 +33,7 @@ module.exports = function(app,cors){
         }
     }
     // INDEX PAGE (CORS TEST)
-    app.get('/',cors(corsOptions),controller.index);
+    // app.get('/',cors(corsOptions),controller.index);
 
     // SHOW SINGLE DATAS
     app.get('/notes/:id',controller.getNote);

@@ -35,10 +35,11 @@ exports.notes = (req,res,next)=>{
 
         query += ` LIMIT ${limit} OFFSET ${offset}`;
     }
-    
+
     if(req.url == "/notes"){
         query += ` ORDER BY time ASC LIMIT 10`;
     }
+    
     connection.query(query,(err,rows,field)=>{
         if(err){
             return next(new Error(err));
@@ -49,14 +50,18 @@ exports.notes = (req,res,next)=>{
                     error : true
                 });
             }else{
-                res.status(200).json({
-                    data : rows,
-                    pages: pages
-                })
+                connection.query('SELECT *FROM description',(err,row,field)=>{
+                    res.status(200).json({
+                        status : 200,
+                        data : rows,
+                        pages: pages,
+                        totalDatas : row.length,
+                        totalPages : Math.ceil(row.length / limit)
+                    });
+                });
             }
         }
     });
-
 }
 ////////////////////////////////// THIS IS PARAMS METHOD //////////////////////////////////
 exports.getNotes = (req,res,next)=>{
