@@ -11,12 +11,15 @@ exports.index = (req,res,next)=>{
 exports.notes = (req,res,next)=>{
     const search = req.query.search;
     const sort = req.query.sort;
-    const pages = req.query.pages;
-    const limit = req.query.limit;
+    const id = req.query.id;
+
+    var pages = req.query.pages;
+    var limit = req.query.limit || 10;
+
+    var offset;
 
     var query = "SELECT desc_id, title,note,time,category_name FROM description INNER JOIN category ON description.category = category.category_id";
 
-    const id = req.query.id;
 
     if(!isEmpty(id)){
         query += ` WHERE desc_id=${id}`;
@@ -28,17 +31,19 @@ exports.notes = (req,res,next)=>{
     if(!isEmpty(sort)){
         query += ` ORDER BY time ${sort}`;
     }
+    else{
+        query += ` ORDER BY time DESC`;
+    }
 
     if(!isEmpty(pages)){
-        // let limit = 2;
-        var offset = pages== 1 ? 0 : (pages-1)* limit;
-
-        query += ` LIMIT ${limit} OFFSET ${offset}`;
+        offset = (pages-1)*limit;
     }
-
-    if(req.url == "/notes"){
-        query += ` ORDER BY time ASC LIMIT 10`;
+    else{
+        offset = 0;
+        pages = 1;
     }
+    
+    query += ` LIMIT ${limit} OFFSET ${offset}`;
     
     connection.query(query,(err,rows,field)=>{
         if(err){
@@ -51,10 +56,11 @@ exports.notes = (req,res,next)=>{
                 });
             }else{
                 connection.query('SELECT *FROM description',(err,row,field)=>{
+                    console.log(query);
                     res.status(200).json({
                         status : 200,
                         data : rows,
-                        pages: pages,
+                        currentPages: parseInt(pages),
                         totalDatas : row.length,
                         totalPages : Math.ceil(row.length / limit)
                     });
