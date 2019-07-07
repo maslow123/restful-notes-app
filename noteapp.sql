@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 20 Jun 2019 pada 10.03
+-- Generation Time: 07 Jul 2019 pada 09.34
 -- Versi Server: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -27,20 +27,21 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `category` (
-  `category_id` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL AUTO_INCREMENT,
   `category_name` varchar(50) NOT NULL,
+  `image_url` varchar(255) NOT NULL,
   PRIMARY KEY (`category_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data untuk tabel `category`
 --
 
-INSERT INTO `category` (`category_id`, `category_name`) VALUES
-(1, 'work'),
-(2, 'life'),
-(3, 'holiday'),
-(4, 'personal data');
+INSERT INTO `category` (`category_id`, `category_name`, `image_url`) VALUES
+(1, 'Work', 'https://png.pngtree.com/svg/20160224/7d9fe6589e.png'),
+(2, 'Holiday', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvPMnP2lZz795c4KsKEM4X7zgqAw_6goqsHUudU9KJQmzm7rySXA'),
+(3, 'Lesson', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1_RrodPs4zy2Woh_M13HGoEijUz6J_5d_Y_2_PCwqc7MJWIYt'),
+(4, 'Draft', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQMkCAgqlpNC2rK77PYfPsYxwOQ9ZILrKEcA8EldPSpExwf1Kp');
 
 -- --------------------------------------------------------
 
@@ -52,33 +53,23 @@ CREATE TABLE IF NOT EXISTS `description` (
   `desc_id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(50) NOT NULL,
   `note` text NOT NULL,
-  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `category` int(11) NOT NULL,
+  `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `category` int(11) DEFAULT NULL,
   PRIMARY KEY (`desc_id`),
   KEY `category` (`category`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=193 ;
 
 --
 -- Dumping data untuk tabel `description`
 --
 
-INSERT INTO `description` (`desc_id`, `title`, `note`, `time`, `category`) VALUES
-(3, 'vacationing at yogyakarta', 'I really like malioboro ', '2019-06-20 07:49:29', 3),
-(4, 'vacationing at jakarta', 'I really like monas ', '2019-06-20 07:49:46', 3),
-(5, 'vacationing at bogor', 'I really like palace bogor ', '2019-06-20 07:50:05', 3),
-(6, 'vacationing at bandung', 'I really like gedung sate ', '2019-06-20 07:50:24', 3),
-(7, 'vacationing at kediri', 'I really like agung mosque', '2019-06-20 07:50:47', 3),
-(8, 'vacationing at malaysia', 'I really like kuala lumpur', '2019-06-20 07:51:23', 3),
-(9, 'Notes app project', 'This week i do make a simple project that is restful API with node JS', '2019-06-20 07:52:34', 1),
-(10, 'Learning Node JS', 'learn node js is very exciting, and make a head dizzy LOL', '2019-06-20 07:53:35', 1),
-(11, 'My Name', 'My Name is M.Fadhly NR, you can call me Fadhly or other', '2019-06-20 07:54:37', 4),
-(12, 'My Name', 'My Name is M.Fadhly NR, you can call me Fadhly or other', '2019-06-20 07:54:42', 4),
-(13, 'My Education', 'My last education is vocational school', '2019-06-20 07:55:36', 4),
-(14, 'I was a freelancer', 'My last project is make a some project for mosque, that programs name is Takmir Masjid', '2019-06-20 07:56:38', 4),
-(15, 'I have a motto', 'That are if you want to be success, you have to feel the hard feeling of learning', '2019-06-20 07:58:40', 4),
-(16, 'My family', 'Iam the second of five children', '2019-06-20 07:59:49', 2),
-(17, 'My Hobbies', 'I have are hobbies, for example reading and trying new things', '2019-06-20 08:00:43', 2),
-(18, 'Become a developer is my goals !', 'Because i have my inspiration, for example is Peter Jack Kambey', '2019-06-20 08:02:01', 2);
+INSERT INTO `description` (`desc_id`, `title`, `note`, `createdAt`, `updatedAt`, `category`) VALUES
+(174, 'Title lesson', 'Lesson', '2019-07-07 01:40:55', '2019-07-07 01:40:55', 3),
+(176, 'Lesson', 'Hagaha', '2019-07-07 01:43:11', '2019-07-07 01:43:11', 3),
+(190, 'Mama this is a work !', 'Simple example to work', '2019-07-07 07:14:10', '2019-07-07 07:19:12', 1),
+(191, 'This is a holiday !', 'Content for notes', '2019-07-07 07:27:15', '2019-07-07 07:27:15', 2),
+(192, 'This is draft !', 'Content for notes', '2019-07-07 07:27:40', '2019-07-07 07:27:40', 4);
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
@@ -88,7 +79,7 @@ INSERT INTO `description` (`desc_id`, `title`, `note`, `time`, `category`) VALUE
 -- Ketidakleluasaan untuk tabel `description`
 --
 ALTER TABLE `description`
-  ADD CONSTRAINT `description_ibfk_1` FOREIGN KEY (`category`) REFERENCES `category` (`category_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `description_ibfk_1` FOREIGN KEY (`category`) REFERENCES `category` (`category_id`) ON DELETE SET NULL;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
