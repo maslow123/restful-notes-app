@@ -1,73 +1,73 @@
 # restful-notes-app
 Simple restful application notes
 
-## Langkah - langkah cara pemakaian program
+## Steps - how to use the program
 
-1. Pertama download / git clone dulu semua filenya.
-2. Jika sudah, jalankan program dengan membuka cmd setelah itu masuke ke directory filenya, dan jika silahkan download software nodejsnya terlebih dahulu di link [nodejs](https://nodejs.org/). Dan jika sudah silahkan buka cmd kamu dan silahkan ketikkan perintah sebagai berikut
+1. First download / git clone this repo first.
+2. If it is already, run the program by opening cmd and then entering the file directory, and if you download the nodejs software first in the link [nodejs](https://nodejs.org/).And if you have already opened cmd, please type the command as follows
 ```
 npm install -g <package_name>
 ```
-karena kita menggunakan banyak library, seperti misalnya express,cors,querystring, dan lodas.isempty. Maka kita install saja sebutuhnya, kita ketikkan saja perintah dibawah ini dalam CMD
+because we use many libraries, such as express, cors, querystring, and lodas.isempty. Then we just install it, we just type the command below in CMD
 ```
 npm install --global <package_name>
 ```
-kode diatas merupakan penginstallan package secara global, yang berarti kita tidak perlu menginstall package lagi ketika kita membuat folder baru / project baru.
+The code above is installing the package globally, which means we don't need to install the package again when we create a new folder / new project.
 
-3. Jika package sudah siap, saatnya untuk penggunaan program. Pertama kita ketikkan pada CMD perintah
+3. If the package is ready, it's time to use the program. First we type in the CMD command
 ```
 node index.js
 ```
-4. Apabila sudah selesai, maka akan program akan berjalan dengan ditandai munculnya **console.log** bertuliskan seperti gambar dibawah ini<br>
+4. When finished, the program will run marked with the appearance of ** console.log ** that reads as shown below<br>
 ![alt text](https://raw.githubusercontent.com/maslow123/restful-notes-app/master/documentation/cap-1.JPG)
-5. Dan jika sudah seperti gambar diatas, langkah selanjutnya yaitu kita mulai dengan membuka tools yang bernama **POSTMAN** yang mana tools ini sangat diperlukan sekali untuk pembuatan API. Karna dengan menggunakan **POSTMAN** ini kita dapat mengecek secara realtime dalam pembuatan API.<br>
+5. And if it's like the picture above, the next step is that we start by opening the tool called ** POSTMAN **, which is very necessary for making APIs. Because by using ** POSTMAN ** we can check in realtime in making API.<br>
 
 ![alt text](https://raw.githubusercontent.com/maslow123/restful-notes-app/master/documentation/cap-2.JPG)
 
-6. Jika sudah membuka toolsnya, langkah selanjutnya yaitu pilih method GET dan masukkan portnya yaitu **localhost:3000/notes**
+6. If you have opened the tools, the next step is to select the GET method and enter the port that is ** localhost: 3000 / notes **
 
-7. Jika kita menekan button send,jika kita membuka parameter notes, dengan port 3000, yang mana isinya merupakan data-data yang ada pada database dengan jumlah 10 data, serta menampilkan status terkini server dan lain sebagainya.<br>
+7. If we press the send button, if we open the notes parameter, with port 3000, which is the data contained in the database with a number of 10 data, and displays the current status of the server and so on.<br>
 
 ![alt text](https://raw.githubusercontent.com/maslow123/restful-notes-app/master/documentation/cap-3.JPG)
-8. Selanjutnya jika kita menuliskan query string setelah parameters ***notes*** seperti misalnya :
+8. Next, if we write the query string after ***notes*** parameters like for example :
 ```
 localhost:3000/notes?id=3
 ```
-maka data yang dihasilkan berupa notes yang memiliki nilai id = 3, seperti gambar dibawah ini
+then the resulting data in the form of notes that have an id value = 3, as shown below
 ![alt text](https://raw.githubusercontent.com/maslow123/restful-notes-app/master/documentation/cap-4.JPG)
-*mengapa kok nilai totalPages = null ? karena kita belum mengisi/memasukkan querystring untuk pages dan limit*
+*why is the value totalPages = null? because we haven't filled in / entered querystring for pages and limits*
 
-9.Disini kita menggunakan query string, untuk pengertian querystring sendiri menurut saya yaitu kita bisa mengirim data melalui query url, untuk lebih jelasnya seperti url dibawah ini
+9.Here we use query string, for the meaning of querystring in my own opinion, that is, we can send data through url queries, for more details like the url below
 ```
 localhost:3000/notes?pages=1&limit=3
 ```
 
 ![alt text](https://raw.githubusercontent.com/maslow123/restful-notes-app/master/documentation/cap-5.JPG)
 
-*url diatas memiliki query string yaitu pages=1 & limit=3 yang mana fungsinya untuk **membuat 1 halaman pertama berisikan data yang ada pada table description***
+*The url above has a query string that is pages = 1 & limit = 3 which function is for **make the first page containing data in the table description***
 
-10. Selain itu, silahkan coba url 
+10. In addition, please try the URL
 ```
 localhost:3000/notes?search=bandung
 ```
-dan lihat hasilnya.
+and see the results.
 
-11. Adapun selain method **GET**, kita bisa menggunakan method **POST** dengan memasukkan url seperti dibawah ini<br>
+11.As for the method **GET**, we can use methods **POST** by entering the url as below<br>
 ![alt text](https://raw.githubusercontent.com/maslow123/restful-notes-app/master/documentation/cap-6.JPG)
-*fungsinya untuk apa sih url diatas?* Fungsinya yaitu untuk mengirim data yang kita masukkan didalam body POSTMAN, kedalam database table description yang mana nilainya berupa inputan yang sesuai dengan nama keynya.dan apabila berhasil maka... coba kalian simpulkan sendiri.
+*what's the function for the url above? * Its function is to send data that we enter in the POSTMAN body, into the table database description where the value is input according to the key name. And if it works then ... try to conclude yourself.
 
-12. Selain itu jika ingin menghapus data, kita bisa mengikuti masukkan url ini 
+12. Besides that if you want to delete data, we can follow enter this url
 ```
 localhost:3000/notes/{id_note_yang_ingin_dihapus}
 ```
-* jangan lupa untuk diganti methodnya dari **POST** menjadi **DELETE**
+* don't forget to change the method from **POST** to be **DELETE**
 
-13. Dan untuk updatenya, caranya hampir sama dengan POST yang membedakannya adalah, jika update(PATCH) dia harus menambahkan 1 parameter lagi setelah end point **notes**, untuk lebih mudahnya lagi simak baik-baik gambar dibawah ini.<br>
+13. And for the update, the way is almost the same as POST which distinguishes it, if the update (PATCH) he has to add one more parameter after the end point **notes**, for more convenience, look carefully at the picture below.<br>
 
 ![alt text](https://raw.githubusercontent.com/maslow123/restful-notes-app/master/documentation/cap-7.JPG)
 
-*disini saya ingin mengubah kalimat sebelumnya "I want trip to jogja" => "I want trip to bandung" dan jangan lupa masukkan parameter setelah notes, parameter yang diisi merupakan id dari data tersebut.*
+*here I want to change the previous sentence "I want trip to jogja" => "I want trip to bandung" and don't forget to enter the parameters after notes, the parameter that is filled in is the id of that data.*
 
-14. Selesai.
+14. Finished.
 
 
