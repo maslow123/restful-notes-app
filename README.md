@@ -58,7 +58,7 @@ and see the results.
 
 12. Besides that if you want to delete data, we can follow enter this url
 ```
-localhost:3000/notes/{id_note_yang_ingin_dihapus}
+localhost:3000/notes/{the id note you want to delete}
 ```
 * don't forget to change the method from **POST** to be **DELETE**
 
