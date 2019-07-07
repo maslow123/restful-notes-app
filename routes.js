@@ -1,19 +1,9 @@
-module.exports = function(app,cors){
+module.exports = function(app){
 
     const controller = require('./controller');
-    var whitelist = ['http://192.168.100.65']
 
-    var corsOptions = {
-        origin: function (origin, callback) {
-          if (whitelist.indexOf(origin) !== -1) {
-            callback(null, true)
-          } else {
-            callback(new Error('This system is safe by CORS'))
-          }
-        }
-    }
     // INDEX PAGE (CORS TEST)
-    app.get('/',cors(corsOptions),controller.index);
+    app.get('/',controller.index);
 
     // SHOW SINGLE DATAS
     app.get('/notes/:id',controller.getNote);
@@ -24,4 +14,12 @@ module.exports = function(app,cors){
 
     // QUERY STRING
     app.get('/notes',controller.notes);
+
+/************* TABLE CATEGORY ******************/
+    app.get('/categories',controller.getCategories);
+    app.post('/categories',controller.createCategory);
+    // app.delete('/categories/:id',controller.deleteCategory);
+    app.get('/categories/:id',controller.getCategoriesById);
+    app.patch('/categories/:id',controller.updateCategory);
+    app.delete('/categories/:id',controller.deleteCategory);
 }

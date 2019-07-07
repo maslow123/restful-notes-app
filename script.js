@@ -5,7 +5,7 @@ function main()
     $.ajax
     ({
         dataType: "json",
-        url: "http://localhost:3000",
+        url: "http://192.168.6.195:3001",
         success: function(data) 
         {
             console.log("log response on success");

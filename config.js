@@ -10,7 +10,7 @@ var mysqlConnect = mysql.createConnection({
 
 mysqlConnect.connect(function(err){
     if(err){
-        throw err;
+        return console.log('Something wrong in connecting database');
     }else{
         console.log('Database has been connected');
     }

@@ -4,8 +4,8 @@ const bodyParser = require('body-parser');
 const routes = require('./routes');
 const cors = require('cors');
 const port = process.env.PORT || 3000;
+const timestamp = require('time-stamp');
 
-const url = require('url');
 const queryString = require('querystring');
 
 app.use(
@@ -14,8 +14,17 @@ app.use(
     })
 );
 
+const logger = (req,res,next)=>{
+  console.log("Logged in at : "+timestamp("DD-MM-YYYY HH:mm:ss"));
+  next();
+}
+
+app.use(logger);
+
 app.use(bodyParser.json());
-routes(app,cors);
+app.use(cors());
+
+routes(app);
 
 // Error handler
 app.use((err, req, res, next) => {
