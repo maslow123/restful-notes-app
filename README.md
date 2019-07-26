@@ -1,4 +1,4 @@
-# restful-notes-app
+# Restful Notes App
 Simple restful application notes
 
 ## Steps - how to use the program
