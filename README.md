@@ -18,13 +18,13 @@ The code above is installing the package globally, which means we don't need to 
 ```
 node index.js
 ```
-4. When finished, the program will run marked with the appearance of ** console.log ** that reads as shown below<br>
+4. When finished, the program will run marked with the appearance of **console.log** that reads as shown below<br>
 ![alt text](https://raw.githubusercontent.com/maslow123/restful-notes-app/master/documentation/cap-1.JPG)
-5. And if it's like the picture above, the next step is that we start by opening the tool called ** POSTMAN **, which is very necessary for making APIs. Because by using ** POSTMAN ** we can check in realtime in making API.<br>
+5. And if it's like the picture above, the next step is that we start by opening the tool called **POSTMA**, which is very necessary for making APIs. Because by using **POSTMAN** we can check in realtime in making API.<br>
 
 ![alt text](https://raw.githubusercontent.com/maslow123/restful-notes-app/master/documentation/cap-2.JPG)
 
-6. If you have opened the tools, the next step is to select the GET method and enter the port that is ** localhost: 3000 / notes **
+6. If you have opened the tools, the next step is to select the GET method and enter the port that is **localhost: 3000 / notes**
 
 7. If we press the send button, if we open the notes parameter, with port 3000, which is the data contained in the database with a number of 10 data, and displays the current status of the server and so on.<br>
 
